@@ -11,7 +11,7 @@ The service depends on the use of [SBT](https://www.scala-sbt.org/) and [Docker]
 ### Docker Setup
 
 Launch a PSQL docker image exposed on port 5432
-- `docker-compose up -d` will
+- `docker-compose up -d`
 
 Setup default tables automatically with provided script
 - `psql -h localhost -U user inspiration_db -f dbsetup.sql`
