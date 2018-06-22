@@ -6,9 +6,18 @@ An experimental API designed to improve my own skills at using both [Scala](http
 
 ## Running Locally
 
-The service depends on the use of [SBT](https://www.scala-sbt.org/). 
+The service depends on the use of [SBT](https://www.scala-sbt.org/) and [Docker](https://www.docker.com/).
 
-To run the service locally:
+### Docker Setup
+
+Launch a PSQL docker image exposed on port 5432
+- `docker-compose up -d` will
+
+Setup default tables automatically with provided script
+- `psql -h localhost -U user inspiration_db -f dbsetup.sql`
+
+### API Start
+
 - In one terminal run the command `sbt run`
 - In another terminal curl the inspiration endpoint: `curl localhost:9000/inspiration`
 

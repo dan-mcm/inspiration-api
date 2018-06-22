@@ -1,0 +1,8 @@
+inspiration:
+  container_name: inspiration
+  image: postgres:9.6-alpine
+  ports:
+    - '5432:5432'
+  environment:
+    POSTGRES_DB: 'inspiration_db'
+    POSTGRES_USER: 'user'
