@@ -2,7 +2,7 @@
 
 An experimental API designed to improve my own skills at using both [Scala](https://www.scala-lang.org/) and the [Play Framework](https://www.playframework.com/).
 
-<img src="http://menschworks.org/wp-content/uploads/2017/12/Inspiration.jpg"/>
+<img src="https://www.runsociety.com/wp-content/uploads/2012/04/30-Inspirational-Posters-For-Runners-thumb-960x540.jpg"/>
 
 ## Running Locally
 
