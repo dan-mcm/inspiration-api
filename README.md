@@ -27,3 +27,7 @@ A basic html page is provided at the index route if you load up `localhost:9000`
 
 GET
 /inspiration - returns a single string containing a random quote featuring the author.
+
+POST
+/inspiration - adds POST data to postgres DB - requires user to specify author and quote
+`curl -X POST -H 'Content-Type: application/json' -d '{"author": "dmcm", "quote": "quotation of the year"}' localhost:9000/inspiration`
