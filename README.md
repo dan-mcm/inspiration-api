@@ -38,7 +38,7 @@ curl -X POST -H 'Content-Type: application/json' -d '{"author": "dmcm", "quote":
 ```
 
 ### PUT
-/inspiration - updates data in postgres DB - requires user to specify id, author and quote
+/inspiration - updates data in postgres DB - requires user to specify index, author and quote
 ```
 curl -X PUT -H 'Content-Type: application/json' -d '{"index": 5, "author": "dmcm", "quote": "quotation of the year"}' localhost:9000/inspiration
 ```
