@@ -18,14 +18,23 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
     Ok(generateQuote(scala.util.Random.nextInt(10)))
   }
 
-  def save() = Action { request =>
+  def add() = Action { request =>
     val body: AnyContent = request.body
     val json: Option[JsValue] = body.asJson
     val author = json.get("author").toString.stripPrefix("\"").stripSuffix("\"").trim
     val quote = json.get("quote").toString.stripPrefix("\"").stripSuffix("\"").trim
-    saveQuote(author, quote)
+    addQuote(author, quote)
     Ok("Successfully updated quotations DB")
+  }
 
+  def replace() = Action { request =>
+    val body: AnyContent = request.body
+    val json: Option[JsValue] = body.asJson
+    val index: Int = json.get("index").toString.toInt
+    val author = json.get("author").toString.stripPrefix("\"").stripSuffix("\"").trim
+    val quote = json.get("quote").toString.stripPrefix("\"").stripSuffix("\"").trim
+    updateQuote(index, author, quote)
+    Ok("Successfully updated quotations DB")
   }
 
   def delete(index: Int) = Action { request =>
@@ -50,7 +59,7 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
     output
   }
 
-  def saveQuote(author:String, quote:String): Unit ={
+  def addQuote(author:String, quote:String): Unit ={
     var index = 0
     Database.forURL(connectionUrl, driver = "org.postgresql.Driver") withSession {
       implicit session =>
@@ -63,11 +72,18 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
     }
   }
 
+  def updateQuote(index:Int, author:String, quote:String) = {
+    Database.forURL(connectionUrl, driver = "org.postgresql.Driver") withSession {
+      implicit session =>
+        val quotes = TableQuery[Quotes]
+        quotes.filter(_.index === index).update(index, author, quote)
+    }
+  }
+
   def deleteQuote(index:Int): Unit = {
     Database.forURL(connectionUrl, driver = "org.postgresql.Driver") withSession {
       implicit session =>
         val quotes = TableQuery[Quotes]
-
         quotes.filter(_.index === index).delete
     }
   }
