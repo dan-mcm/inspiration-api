@@ -11,5 +11,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 # Inspiration CRUD endpoints
 GET     /inspiration                controllers.InspirationController.index
-POST    /inspiration                controllers.InspirationController.save
+POST    /inspiration                controllers.InspirationController.add
+PUT     /inspiration                controllers.InspirationController.replace
 DELETE  /inspiration/:index         controllers.InspirationController.delete(index: Int)
