@@ -30,4 +30,6 @@ GET
 
 POST
 /inspiration - adds POST data to postgres DB - requires user to specify author and quote
-`curl -X POST -H 'Content-Type: application/json' -d '{"author": "dmcm", "quote": "quotation of the year"}' localhost:9000/inspiration`
+```
+curl -X POST -H 'Content-Type: application/json' -d '{"author": "dmcm", "quote": "quotation of the year"}' localhost:9000/inspiration
+```
