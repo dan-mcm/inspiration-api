@@ -25,19 +25,19 @@ A basic html page is provided at the index route if you load up `localhost:9000`
 
 ## Available Endpoints
 
-GET
+### GET
 /inspiration - returns a single string containing a random quote featuring the author.
 ```
 curl localhost:9000/inspiration
 ```
 
-POST
+### POST
 /inspiration - adds post data to postgres DB - requires user to specify author and quote
 ```
 curl -X POST -H 'Content-Type: application/json' -d '{"author": "dmcm", "quote": "quotation of the year"}' localhost:9000/inspiration
 ```
 
-DELETE
+### DELETE
 /inspiration/:index - deletes entry from postgres DB - requires user to specify index within url
 ```
 curl -X DELETE localhost:9000/inspiration/6
