@@ -9,9 +9,9 @@ import scala.collection.mutable.ArrayBuffer
 import scala.slick.driver.PostgresDriver.simple._
 
 /**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's home page.
- */
+  * This controller creates an `Action` to handle HTTP requests to the
+  * application's home page.
+  */
 @Singleton
 class InspirationController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
   def index() = Action { implicit request: Request[AnyContent] =>
@@ -28,9 +28,13 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
 
   }
 
+  def delete(index: Int) = Action { request =>
+    deleteQuote(index)
+    Ok(s"Successfully deleted entry $index")
+  }
   val connectionUrl = "jdbc:postgresql://localhost:5432/inspiration_db?user=user"
 
-  def generateQuote(random:Int) : String = {
+  def generateQuote(random:Int): String = {
     var output = ""
 
     // connecting to postgres db for accessing data
@@ -42,7 +46,7 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
         quotes.filter(_.index === random+1).list foreach { row =>
           output = row._2 + ": " + row._3
         }
-      }
+    }
     output
   }
 
@@ -56,6 +60,15 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
           index = row._1 + 1
         }
         quotes += (index, author, quote)
+    }
+  }
+
+  def deleteQuote(index:Int): Unit = {
+    Database.forURL(connectionUrl, driver = "org.postgresql.Driver") withSession {
+      implicit session =>
+        val quotes = TableQuery[Quotes]
+
+        quotes.filter(_.index === index).delete
     }
   }
 }
