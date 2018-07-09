@@ -1,5 +1,5 @@
 name := """inspiration-api"""
-organization := "com.example"
+organization := "ie.dmcm"
 
 version := "1.0-SNAPSHOT"
 
