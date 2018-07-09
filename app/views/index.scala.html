@@ -3,6 +3,21 @@
 @main("Welcome to Play") {
   <h1>Welcome to the Inspiration Generator!</h1>
   <h2>Endpoints</h2>
+
   <h3>GET</h3>
   <p><b>/inspiration</b> returns a string of inspiration & associated author.</p>
+
+  <h3>POST</h3>
+  <p><b>/inspiration</b> adds post data to postgres DB - requires user to specify author and quote.</p>
+  <code>curl -X POST -H 'Content-Type: application/json' -d '{"author": "dmcm", "quote": "quotation of the year"}' localhost:9000/inspiration
+  </code>
+
+  <h3>PUT</h3>
+  <p><b>/inspiration</b> updates data in postgres DB - requires user to specify index, author and quote.</p>
+  <code>curl -X PUT -H 'Content-Type: application/json' -d '{"index": 5, "author": "dmcm", "quote": "quotation of the year"}' localhost:9000/inspiration
+  </code>
+
+  <h3>DELETE</h3>
+  <p><b>/inspiration</b> deletes entry from postgres DB - requires user to specify index within url.</p>
+  <code>curl -X DELETE localhost:9000/inspiration/6</code>
 }
