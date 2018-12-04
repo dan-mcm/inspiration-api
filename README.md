@@ -57,7 +57,7 @@ The service can be run from a Docker container:
 docker build -t inspiration_api:v1 .
 
 # port forwarding Docker to localhost:9000
-docker run -ti -p 9000:9000 <docker-image-id>
+docker run -ti -p 9000:9000 --network="host" <docker-image-id>
 
 # publish docker image to docker hub
 docker push <docker-repo>
