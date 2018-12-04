@@ -49,3 +49,16 @@ curl -X PUT -H 'Content-Type: application/json' -d '{"index": 5, "author": "dmcm
 curl -X DELETE localhost:9000/inspiration/6
 ```
 
+## Docker
+The service can be run from a Docker container:
+
+```
+# build and tag image locally
+docker build -t inspiration_api:v1 .
+
+# port forwarding Docker to localhost:9000
+docker run -ti -p 9000:9000 <docker-image-id>
+
+# publish docker image to docker hub
+docker push <docker-repo>
+```
