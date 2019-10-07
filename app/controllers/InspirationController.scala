@@ -41,7 +41,7 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
     deleteQuote(index)
     Ok(s"Successfully deleted entry $index")
   }
-  val connectionUrl = "jdbc:postgresql://localhost:5432/inspiration_db?user=user"
+  val connectionUrl = s"jdbc:postgresql://localhost:5432/inspiration_db?user=${sys.env("DB_USER")}&password=${sys.env("DB_PASS")}"
 
   def generateQuote(random:Int): String = {
     var output = ""
@@ -53,7 +53,7 @@ class InspirationController @Inject()(cc: ControllerComponents) extends Abstract
 
         // SELECT * FROM quotations WHERE id=randomInt
         quotes.filter(_.index === random+1).list foreach { row =>
-          output = row._2 + ": " + row._3
+          output = s"\n\n ${row._2}: ${row._3} \n"
         }
     }
     output

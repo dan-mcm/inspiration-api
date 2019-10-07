@@ -16,6 +16,19 @@ Launch a PSQL docker image exposed on port 5432
 Setup default tables automatically with provided script
 - `psql -h localhost -U user inspiration_db -f dbsetup.sql`
 
+####
+
+Note that the JDBC DB connection requires 2 env vars to be set:
+
+* DB_USER
+* DB_PASS
+
+These will vary depending on your local postgres setup.
+
+```scala
+val connectionUrl = s"jdbc:postgresql://localhost:5432/inspiration_db?user=${sys.env("DB_USER")}&password=${sys.env("DB_PASS")}"
+```
+
 ### API Start
 
 - In one terminal run the command `sbt run`
